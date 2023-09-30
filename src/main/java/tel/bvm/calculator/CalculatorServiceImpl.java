@@ -1,9 +1,13 @@
 package tel.bvm.calculator;
 
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Service
 public class CalculatorServiceImpl implements CalculatorService {
 
     public String greeting() {
-        return "<b>Добро пожаловать<b>" + "Нужно выбрать раздел меню, набрав в адресной строке: /menu";
+        return "Добро пожаловать " + "Нужно выбрать раздел меню, набрав в адресной строке: /menu";
     }
 
     public String menu() {
@@ -11,11 +15,19 @@ public class CalculatorServiceImpl implements CalculatorService {
     }
 
     public String calculator() {
-        return "</b>Калькулятор:</b> " + "Нужно ввести в адресную строку значения: /menu/calculator/values";
+        return "Калькулятор: " + "Нужно ввести в адресную строку значения: /menu/calculator/anyvalues";
     }
-    public Float valuesPlus(float anyValueOne, float anyValuesTwo) {
-//        float[] values = {anyValueOne, anyValueOne};
-        float sum = anyValueOne + anyValuesTwo;
-        return sum;
+
+    public String valuesActions(Float anyValueOne, String anyAction, Float anyValuesTwo) {
+        float[] values = {anyValueOne, anyValueOne};
+        Float result = null;
+        if (anyAction.equals("+")) {
+            for (int i = 0; i < values.length; i++) {
+                result = values[i] + values[i + 1];
+            }
+        }
+        String resultString;
+        resultString = anyValueOne + " + " + anyValuesTwo + " = " + result;
+        return resultString;
     }
 }

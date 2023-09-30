@@ -7,5 +7,5 @@ public interface CalculatorService {
 
     String calculator();
 
-    Float valuesPlus(float anyValueOne, float anyValuesTwo);
+    String valuesActions(Float anyValueOne, String anyAction, Float anyValuesTwo);
 }
