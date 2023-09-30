@@ -18,16 +18,18 @@ public class CalculatorServiceImpl implements CalculatorService {
         return "Калькулятор: " + "Нужно ввести в адресную строку значения: /menu/calculator/anyvalues";
     }
 
-    public String valuesActions(Float anyValueOne, String anyAction, Float anyValuesTwo) {
-        float[] values = {anyValueOne, anyValueOne};
-        Float result = null;
-        if (anyAction.equals("+")) {
-            for (int i = 0; i < values.length; i++) {
-                result = values[i] + values[i + 1];
+    public String valuesActions(float anyValueOne, String anyAction, float anyValueTwo) {
+        float result = 0;
+        float[] values = {anyValueOne, anyValueTwo};
+        String plus = "+";
+        String resultString = null;
+        if (anyAction.equals(plus)) {
+            for (int i = 0; i < values.length - 1; i++) {
+                result = result + values[i] + values[i + 1];
+                resultString = anyValueOne + " + " + anyValueTwo + " = " + result;
             }
-        }
-        String resultString;
-        resultString = anyValueOne + " + " + anyValuesTwo + " = " + result;
+        } else resultString = "Результат не может быть рассчитан. Нужно выбрать допустимое действие: +-*/" + result;
         return resultString;
     }
 }
+
