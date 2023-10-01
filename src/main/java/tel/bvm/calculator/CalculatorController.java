@@ -29,9 +29,7 @@ public class CalculatorController {
     }
 
     @GetMapping(path = "/menu/calculator/anyvalues")
-    public String valuesActions(@RequestParam("valueone") float anyValueOne, @RequestParam("action") String anyAction, @RequestParam("valuetwo") float anyValueTwo) {
-//        String resultString;
+    public String valuesActions(@RequestParam("valueone") Float anyValueOne, @RequestParam("action") String anyAction, @RequestParam("valuetwo") Float anyValueTwo) {
         return calculatorService.valuesActions(anyValueOne, anyAction, anyValueTwo);
     }
 }
-
