@@ -4,6 +4,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
+    public String singNull(Float one, Float two) {
+        boolean confirmNull = one == null || two == null;
+        String stringResult = "noNull";
+        if (confirmNull) {
+            stringResult = "Для расчёта необходимо указать числовые значения переменных";
+        }
+        return stringResult;
+    }
 
     public String greeting() {
         return "Добро пожаловать " + "Нужно выбрать раздел меню, набрав в адресной строке: /menu";
@@ -14,7 +22,55 @@ public class CalculatorServiceImpl implements CalculatorService {
     }
 
     public String calculator() {
-        return "Калькулятор: " + "Нужно ввести в адресную строку значения: /menu/calculator/anyvalues, дополнив значениями переменных с указанием требуемого действия, например: http://localhost:8080/menu/calculator/anyvalues?valueone=300&action=умножить&valuetwo=200";
+        return "Калькулятор: " + "1) Нужно ввести в адресную строку значения: /menu/calculator/anyvalues, дополнив значениями переменных с указанием требуемого действия, например: http://localhost:8080/menu/calculator/anyvalues?valueone=300&action=умножить&valuetwo=200 2) Или перейти в соответствующий раздел, действия, который нужно выполнить для переменных, например: http://localhost:8080/menu/calculator/actionmethod/plus?variableone=300&variabletwo=200";
+    }
+
+    public String actionMethod() {
+        return "Калькулятор: " + "Нужно выбрать действие (plus, minus, multiply или divide) и внести значение переменных (variableone и variabletwo), /menu/calculator/actionmethod, например: http://localhost:8080/menu/calculator/actionmethod/plus?variableone=300&variabletwo=200";
+    }
+
+    public String plus(Float one, Float two) {
+        String resultCalculation = "";
+        String resultString = "";
+        if (singNull(one, two).equals("noNull")) {
+            Float result = one + two;
+            resultString = one + " + " + two + " = " + result;
+        } else resultString = singNull(one, two);
+        return resultString;
+    }
+
+    public String minus(Float one, Float two) {
+        String resultCalculation = "";
+        String resultString = "";
+        if (singNull(one, two).equals("noNull")) {
+            Float result = one - two;
+            resultString = one + " - " + two + " = " + result;
+        } else resultString = singNull(one, two);
+        return resultString;
+    }
+
+    public String multiply(Float one, Float two) {
+        String resultCalculation = "";
+        String resultString = "";
+        if (singNull(one, two).equals("noNull")) {
+            Float result = one * two;
+            resultString = one + " * " + two + " = " + result;
+        } else resultString = singNull(one, two);
+        return resultString;
+    }
+
+    public String divide(Float one, Float two) {
+        String resultCalculation = "";
+        String resultString = "";
+        if (singNull(one, two).equals("noNull")) {
+            if (two == 0) {
+                resultString = "Недопустимое значение делителя равным нулю. На ноль делить нельзя";
+            } else {
+                Float result = one / two;
+                resultString = one + " / " + two + " = " + result;
+            }
+        } else resultString = singNull(one, two);
+        return resultString;
     }
 
     public String valuesActions(Float anyValueOne, String anyAction, Float anyValueTwo) {

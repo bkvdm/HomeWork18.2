@@ -29,7 +29,34 @@ public class CalculatorController {
     }
 
     @GetMapping(path = "/menu/calculator/anyvalues")
-    public String valuesActions(@RequestParam("valueone") Float anyValueOne, @RequestParam("action") String anyAction, @RequestParam("valuetwo") Float anyValueTwo) {
+    public String valuesActions(@RequestParam(value = "valueone", required = false) Float anyValueOne, @RequestParam("action") String anyAction, @RequestParam(value = "valuetwo", required = false) Float anyValueTwo) {
+//        required = false RequestParam
         return calculatorService.valuesActions(anyValueOne, anyAction, anyValueTwo);
     }
+
+    @GetMapping(path = "/menu/calculator/actionmethod")
+    public String actionMethod() {
+        return calculatorService.actionMethod();
+    }
+
+    @GetMapping(path = "/menu/calculator/actionmethod/plus")
+    public String plus(@RequestParam(value = "variableone", required = false) Float one, @RequestParam(value = "variabletwo", required = false) Float two) {
+        return calculatorService.plus(one, two);
+    }
+
+    @GetMapping(path = "/menu/calculator/actionmethod/minus")
+    public String minus(@RequestParam(value = "variableone", required = false) Float one, @RequestParam(value = "variabletwo", required = false) Float two) {
+        return calculatorService.minus(one, two);
+    }
+
+    @GetMapping(path = "/menu/calculator/actionmethod/multiply")
+    public String multiply(@RequestParam(value = "variableone", required = false) Float one, @RequestParam(value = "variabletwo", required = false) Float two) {
+        return calculatorService.multiply(one, two);
+    }
+
+    @GetMapping(path = "/menu/calculator/actionmethod/divide")
+    public String divide(@RequestParam(value = "variableone", required = false) Float one, @RequestParam(value = "variabletwo", required = false) Float two) {
+        return calculatorService.divide(one, two);
+    }
+
 }
